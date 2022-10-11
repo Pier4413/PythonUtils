@@ -2,7 +2,7 @@ from os import environ
 import sys
 
 try:
-  from modules.logger.logger import Logger
+  from ..logger.logger import Logger
 except Exception as e:
   print(f"No logger module can't load it", file=sys.stderr)
   Logger = None
