@@ -52,13 +52,13 @@ def start_app(parameters : dict) -> None:
     Logger.get_instance().load_logger(info_file=parameters["log_info"], critical_file=parameters["log_critical"], console=parameters["log_console"], level=parameters["log_level"], app_name="Accounts")
     
     # Printing options for debug purposes in the logger (i.e in files and console if wanted)
-    Logger.info("Given options : ")
-    Logger.info(f"--settings={parameters['conf_file_name']}")
-    Logger.info(f"--env={parameters['env_file']}")
-    Logger.info(f"--log_level={parameters['log_level']}")
-    Logger.info(f"--log_info_file={parameters['log_info']}")
-    Logger.info(f"--log_crit_file={parameters['log_critical']}")
-    Logger.info(f"--log_console={parameters['log_console']}")
+    Logger.info(value="Given options : ")
+    Logger.info(value=f"--settings={parameters['conf_file_name']}")
+    Logger.info(value=f"--env={parameters['env_file']}")
+    Logger.info(value=f"--log_level={parameters['log_level']}")
+    Logger.info(value=f"--log_info_file={parameters['log_info']}")
+    Logger.info(value=f"--log_crit_file={parameters['log_critical']}")
+    Logger.info(value=f"--log_console={parameters['log_console']}")
   else:
     print(f"No logger module is present can't prepare the module", file=sys.stderr)
 
