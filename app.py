@@ -37,7 +37,7 @@ def print_help():
     print("Error in the helper. Please contact the developer of the application")
   sys.exit(0)
 
-def start_app(parameters : dict) -> None:
+def start_app(parameters : dict, app_name : str = "NO_NAME") -> None:
   """
     Cette fonction initialise le logger et charge le fichier de conf
 
@@ -45,11 +45,13 @@ def start_app(parameters : dict) -> None:
 
     :param parameters: Un dictionnaire des parametres necessaire pour initialiser les informations
     :type parameters: dict
+    :param app_name: The name of the application
+    :type app_name: str
   """
 
   if Logger is not None:
     # Logger loading
-    Logger.get_instance().load_logger(info_file=parameters["log_info"], critical_file=parameters["log_critical"], console=parameters["log_console"], level=parameters["log_level"], app_name="Accounts")
+    Logger.get_instance().load_logger(info_file=parameters["log_info"], critical_file=parameters["log_critical"], console=parameters["log_console"], level=parameters["log_level"], app_name=app_name)
     
     # Printing options for debug purposes in the logger (i.e in files and console if wanted)
     Logger.info(value="Given options : ")
