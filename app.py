@@ -1,9 +1,7 @@
 import sys
 import getopt
 from typing import Any
-from dotenv import (
-    load_dotenv
-)
+from dotenv import load_dotenv
 
 try:
   from ..logger.logger import Logger
@@ -18,7 +16,7 @@ except Exception as e:
   Settings = None
 
 def options() -> list:
-  return ["help", "settings", "env", "log_console", "log_level", "log_info_file", "log_crit_file"]
+  return ["help", "settings", "env", "log_console", "log_info_file", "log_crit_file", "log_level"]
 
 def print_help():
   text = [
