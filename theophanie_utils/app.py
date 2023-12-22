@@ -3,17 +3,8 @@ import getopt
 from typing import Any
 from dotenv import load_dotenv
 
-try:
-  from ..logger.logger import Logger
-except Exception as e:
-  print(f"Error while importing Logger : {e}", file=sys.stderr)
-  Logger = None
-
-try:
-  from ..settings.settings import Settings
-except Exception as e:
-  print(f"Error while importing Settings : {e}", file=sys.stderr)
-  Settings = None
+from logger import Logger
+from settings import Settings
 
 def options() -> list:
   return ["help", "settings", "env", "log_console", "log_info_file", "log_crit_file", "log_level"]
@@ -47,26 +38,18 @@ def start_app(parameters : dict, app_name : str = "NO_NAME") -> None:
     :type app_name: str
   """
 
-  if Logger is not None:
-    # Logger loading
-    Logger.get_instance().load_logger(info_file=parameters["log_info"], critical_file=parameters["log_critical"], console=parameters["log_console"], level=parameters["log_level"], app_name=app_name)
-    
-    # Printing options for debug purposes in the logger (i.e in files and console if wanted)
-    Logger.info(value="Given options : ")
-    Logger.info(value=f"--settings={parameters['conf_file_name']}")
-    Logger.info(value=f"--env={parameters['env_file']}")
-    Logger.info(value=f"--log_level={parameters['log_level']}")
-    Logger.info(value=f"--log_info_file={parameters['log_info']}")
-    Logger.info(value=f"--log_crit_file={parameters['log_critical']}")
-    Logger.info(value=f"--log_console={parameters['log_console']}")
-  else:
-    print(f"No logger module is present can't prepare the module", file=sys.stderr)
+  Logger.get_instance().load_logger(info_file=parameters["log_info"], critical_file=parameters["log_critical"], console=parameters["log_console"], level=parameters["log_level"], app_name=app_name)
+  
+  # Printing options for debug purposes in the logger (i.e in files and console if wanted)
+  Logger.info(value="Given options : ")
+  Logger.info(value=f"--settings={parameters['conf_file_name']}")
+  Logger.info(value=f"--env={parameters['env_file']}")
+  Logger.info(value=f"--log_level={parameters['log_level']}")
+  Logger.info(value=f"--log_info_file={parameters['log_info']}")
+  Logger.info(value=f"--log_crit_file={parameters['log_critical']}")
+  Logger.info(value=f"--log_console={parameters['log_console']}")
 
-  if Settings is not None:
-    # Load settings
-    Settings.get_instance().load_settings(parameters["conf_file_name"])
-  else:
-    print(f"No Settings module is present can't prepare the module", file=sys.stderr)
+  Settings.get_instance().load_settings(parameters["conf_file_name"])
     
   # Env
   load_dotenv(parameters["env_file"])
