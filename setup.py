@@ -8,5 +8,10 @@ setup(
     url='https://github.com/Pier4413/PythonUtils',
     author='Panda',
     author_email='panda@delmasweb.net',
+    install_requires=[
+        'python-dotenv',
+        'logger',
+        'settings'
+    ],
     keywords=['theophanie']
 )
