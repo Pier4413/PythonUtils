@@ -2,7 +2,7 @@ from os import environ
 
 from logger import Logger
 
-def load_an_environ(value : str, default_value : str) -> str:
+def load_an_environ(value : str, default_value : str | None = None) -> str | None:
   """
     This function load an element from the environment with checks
 
@@ -18,5 +18,5 @@ def load_an_environ(value : str, default_value : str) -> str:
       return data
     return default_value
   except Exception as e:
-    Logger.warning(value=f"There was an error while loading the env variable : {value}")
+    Logger.warning(value=f"There was an error while loading the env variable : {value} due to {e}")
     return default_value
