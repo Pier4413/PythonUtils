@@ -1,4 +1,5 @@
 from setuptools import setup
+from theophanie_utils.metadata.__version__ import __version__
 
 setup(
     name='theophanie_utils',
