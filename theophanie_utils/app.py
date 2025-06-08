@@ -45,8 +45,9 @@ def validate_mandatory_options(params: dict[str, str]) -> None:
     :param params: The dict of parameters we want to validate
     :type params: dict[str, str]
     :raise: A ValueError Exception if a key is missing
-  """  
-  mandatory_options = ["log_info_file", "log_crit_file", "log_level", "log_console", "settings", "env"]
+  """
+  proposed = proposed_options()
+  mandatory_options = [option.long for option in proposed]
   missing = [opt for opt in mandatory_options if opt not in params]
   if missing:
       raise ValueError(f"Missing mandatory options: {', '.join(missing)}. If you have any doubts you shall extend the proposed_options function")
